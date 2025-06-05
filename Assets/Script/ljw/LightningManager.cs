@@ -6,47 +6,34 @@ public class LightningManager : MonoBehaviour
 {
     public static LightningManager instance;
 
-    public GameObject lightning1Prefab;
-    public GameObject lightning2Prefab;
-    public Transform spawnPoint;
-
-    private GameObject activeLightning;
+    public GameObject lightning1;
+    public GameObject lightning2;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
     }
 
-    public void TriggerLightning()
+    public void TriggerLightning(bool hasEnoughCoins)
     {
         if (PlayerController.instance == null || GameManager.instance == null)
-            {
-                Debug.LogWarning("PlayerController or GameManager not found");
-                return;
-            }
-
-        if (activeLightning != null)
-            {
-                Destroy(activeLightning);
-                activeLightning = null;
-            }
-
-        int coin = GameManager.instance.GetCollectedCoins();
-        int required = GameManager.instance.requiredCoins;
-
-        bool survived = coin >= required;
-        GameObject prefabToUse = survived ? lightning2Prefab : lightning1Prefab;
-
-        if (prefabToUse != null && spawnPoint != null)
         {
-                activeLightning = Instantiate(prefabToUse, spawnPoint.position, Quaternion.identity);
+            Debug.LogWarning("PlayerController or GameManager not found");
+            return;
         }
 
-        if (!survived)
+        if (hasEnoughCoins)
         {
+            if (lightning2 != null)
+                lightning2.SetActive(true);  // OnEnable에서 애니메이션 + 페이드아웃 자동 실행
+        }
+        else
+        {
+            if (lightning1 != null)
+                lightning1.SetActive(true);
+
+            if (PlayerController.instance != null)
                 PlayerController.instance.Die();
         }
     }

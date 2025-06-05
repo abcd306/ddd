@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public int collectedCoins = 0;
     public int requiredCoins = 0;
+    public int currentChapter = 1;
 
     public GameObject gameOverUI;
 
@@ -15,12 +16,6 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
-    }
-
-    public void SetRequiredCoins(int amount)
-    {
-        requiredCoins = amount;
-        UpdateCoinUI();
     }
 
     public void AddCoin()
@@ -33,6 +28,12 @@ public class GameManager : MonoBehaviour
     {
         collectedCoins = 0;
         UpdateCoinUI();
+    }
+
+    public void SetRequiredCoins(int amount)
+    {
+        requiredCoins = amount;
+        UIManager.instance?.UpdateCoinUI(collectedCoins, requiredCoins);
     }
 
     public bool HasEnoughCoins() => collectedCoins >= requiredCoins;

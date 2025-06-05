@@ -12,6 +12,8 @@ TagManager:
   - DreamEnergy
   - RunTrigger
   - Stop
+  - Boss
+  - Test
   layers:
   - Default
   - TransparentFX

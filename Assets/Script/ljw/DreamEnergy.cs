@@ -8,7 +8,7 @@ public class DreamEnergy : ScrollObject
     protected override void Awake()
     {
         base.Awake();
-        activeChapters = new List<int> { 2, 3 };
+        activeChapters = new List<int> { 1,2,3 };
     }
 
     protected override void Move()
