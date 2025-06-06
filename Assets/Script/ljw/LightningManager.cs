@@ -28,7 +28,7 @@ public class LightningManager : MonoBehaviour
                 lightning1.SetActive(true);
 
             if (PlayerController.instance != null)
-                PlayerController.instance.Die();
+                PlayerController.instance.Invoke("ForceDie", 0.3f);
         }
     }
 }

@@ -58,19 +58,3 @@ public class ScrollManager : MonoBehaviour
         }
     }
 }
-
-    //public void ChangeChapter(int newChapter)
-    //{
-    //    CurrentChapter = newChapter;
-    //    Direction = (newChapter == 2) ? 1 : -1;
-    //}
-
-    //public void FlipDirection()
-    //{
-    //    Direction = -Direction;
-    //}
-
-    //public void SetDirection(int newDirection)
-    //{
-    //    Direction = newDirection;
-    //}

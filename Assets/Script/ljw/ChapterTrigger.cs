@@ -15,6 +15,19 @@ public class ChapterTrigger : ScrollObject
         if (other.CompareTag("Player"))
         {
             GameManager.instance.GoToChapter((int)ChapterType.Chapter2);
+           
+            SpriteRenderer spr = other.GetComponent<SpriteRenderer>();
+            if (spr != null)
+                spr.flipX = !spr.flipX;
+
+            //other.transform.position += Vector3.right * 10f;
+            Vector3 playerPos = other.transform.position;
+            float cameraX = Camera.main.transform.position.x;
+            float mirroredX = cameraX - (playerPos.x - cameraX);
+            other.transform.position = new Vector3(mirroredX, playerPos.y, playerPos.z);
+
+            PlayerController.instance.RestoreFullHP();
+            
             Destroy(gameObject);
         }
     }

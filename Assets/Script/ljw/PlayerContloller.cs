@@ -15,9 +15,8 @@ public class PlayerController : MonoBehaviour
 
     private int maxLives = 3;
     private int currentLives;
-    public int CoinCount = 0;
 
-    private float invincibleTime = 15f;
+    private float invincibleTime = 20f;
     private float hurtDuration = 0.3f;
 
     private bool isHurt = false;
@@ -64,7 +63,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         RestoreFullHP();
-        UIManager.instance.UpdateCoinUI(0, 0);
         SetGroundTrue();
     }
 
@@ -227,6 +225,13 @@ public class PlayerController : MonoBehaviour
         {
             stopManager.speed = 0f;
         }
+    }
+
+    public void ForceDie()
+    {
+        currentLives = 0;
+        UIManager.instance.UpdateLivesUI(0);
+        Die();
     }
 
 

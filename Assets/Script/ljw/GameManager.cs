@@ -50,9 +50,9 @@ public class GameManager : MonoBehaviour
         UpdateCoinUI();
     }
 
-    public void SetRequiredCoins(int amount)
+    public void SetRequiredCoins()
     {
-        requiredCoins = amount;
+        requiredCoins = currentChapter;
         UpdateCoinUI();
     }
 
@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         currentChapter = chapter;
         ResetCoins();
         UpdateBackground(chapter);
+        SetRequiredCoins();
         ScrollManager.Instance?.SetDirectionForChapter(chapter);
     }
 

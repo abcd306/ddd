@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChapterManager : MonoBehaviour
 {
     public int requiredCoins = 0;
-    public int nextChapter = 2;
+    //public int nextChapter = 2;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,19 +18,13 @@ public class ChapterManager : MonoBehaviour
             return;
         }
 
-        GameManager.instance.SetRequiredCoins(requiredCoins);
-
         bool hasEnoughCoins = GameManager.instance.HasEnoughCoins();
 
         LightningManager.instance.TriggerLightning(hasEnoughCoins);
 
         if (hasEnoughCoins)
         {
-            Debug.Log($"챕터 {nextChapter} 진입! 코인 충분.");
-
-            GameManager.instance.currentChapter = nextChapter;
-            GameManager.instance.ResetCoins();
-
+            Debug.Log(" 코인 충분! 다음 챕터로.");
         }
         else
         {

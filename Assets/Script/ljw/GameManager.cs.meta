@@ -3,7 +3,12 @@ guid: bd099f1275d30e544b37e8aff034f343
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gameOverUI: {instanceID: 0}
+  - backgroundRenderer: {instanceID: 0}
+  - BG1: {fileID: 21300000, guid: 2c6562c6230af6a49ba847a2268bcbfb, type: 3}
+  - BG2: {fileID: 21300000, guid: de6a4694b42e5824fb95fcfc3e66e7ef, type: 3}
+  - BG3: {fileID: 21300000, guid: 8bb5aff15fa82f54ca21d41cb78d443b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
