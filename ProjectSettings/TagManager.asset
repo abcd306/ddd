@@ -9,11 +9,9 @@ TagManager:
   - Lightning
   - Coin
   - Enemy
-  - DreamEnergy
   - RunTrigger
   - Stop
   - Boss
-  - Test
   layers:
   - Default
   - TransparentFX

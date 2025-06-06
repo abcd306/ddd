@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
         int scrollDir = (currentDirection == Direction.Right) ? 1 : -1;
 
-        ScrollManager.Instance.SetDirection(scrollDir);
+        scrollDir = ScrollManager.Instance.GetDirection();
     }
 
     public void TakeDamage()

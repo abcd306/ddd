@@ -17,12 +17,6 @@ public class LightningManager : MonoBehaviour
 
     public void TriggerLightning(bool hasEnoughCoins)
     {
-        if (PlayerController.instance == null || GameManager.instance == null)
-        {
-            Debug.LogWarning("PlayerController or GameManager not found");
-            return;
-        }
-
         if (hasEnoughCoins)
         {
             if (lightning2 != null)

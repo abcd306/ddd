@@ -6,13 +6,14 @@ public class ScrollManager : MonoBehaviour
 {
     public static ScrollManager Instance;
 
-    public int Direction = -1;
-    public int CurrentChapter = 1;
+    private int direction = -1;
 
     public SpriteRenderer[] backgrounds;
     public float speed = 10f;
     private float offset = 24f;
     private float resetPosX = -23.5f;
+
+    public int GetDirection() { return direction; }
 
     private void Awake()
     {
@@ -25,13 +26,18 @@ public class ScrollManager : MonoBehaviour
         ScrollBackgrounds();
     }
 
+    public void SetDirectionForChapter(int chapter)
+    {
+        direction = (chapter == (int)ChapterType.Chapter2) ? 1 : -1;
+    }
+
     private void ScrollBackgrounds()
     {
         for (int i = 0; i < backgrounds.Length; i++)
         {
-            backgrounds[i].transform.position += Vector3.right * Direction * speed * Time.deltaTime;
+            backgrounds[i].transform.position += Vector3.right * direction * speed * Time.deltaTime;
 
-            if (Direction == 1)
+            if (direction == 1)
             {
                 if (backgrounds[i].transform.position.x >= -resetPosX)
                 {
@@ -40,7 +46,7 @@ public class ScrollManager : MonoBehaviour
                     backgrounds[i].transform.position = newPos;
                 }
             }
-            else if (Direction == -1)
+            else if (direction == -1)
             {
                 if (backgrounds[i].transform.position.x <= resetPosX)
                 {
@@ -51,21 +57,20 @@ public class ScrollManager : MonoBehaviour
             }
         }
     }
-
-    public void ChangeChapter(int newChapter)
-    {
-        CurrentChapter = newChapter;
-        Direction = (newChapter == 2) ? 1 : -1;
-    }
-
-    public void FlipDirection()
-    {
-        Direction = -Direction;
-    }
-
-    public void SetDirection(int newDirection)
-    {
-        Direction = newDirection;
-    }
 }
 
+    //public void ChangeChapter(int newChapter)
+    //{
+    //    CurrentChapter = newChapter;
+    //    Direction = (newChapter == 2) ? 1 : -1;
+    //}
+
+    //public void FlipDirection()
+    //{
+    //    Direction = -Direction;
+    //}
+
+    //public void SetDirection(int newDirection)
+    //{
+    //    Direction = newDirection;
+    //}

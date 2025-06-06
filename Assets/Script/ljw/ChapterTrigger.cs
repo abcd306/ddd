@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class ChapterTrigger : ScrollObject
 {
-    protected override void Move()
+    protected override void Awake()
     {
-        direction = ScrollManager.Instance.Direction; // 방향 값 가져오기
-
-        if (direction == 0) return;
-
-        float moveX = moveSpeed * direction * Time.deltaTime;
-        transform.Translate(Vector3.right * moveX);
+        base.Awake();
+        activeChapters = new List<int> { 1, 3 };
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            ScrollManager.Instance?.ChangeChapter(2);
+            GameManager.instance.GoToChapter((int)ChapterType.Chapter2);
             Destroy(gameObject);
         }
     }

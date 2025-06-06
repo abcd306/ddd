@@ -14,17 +14,13 @@ public class Lightningflase : MonoBehaviour
 
     private void OnEnable()
     {
-        // 애니메이션 처음부터 한 번 재생
         animator.Play("LightningAnimation", -1, 0f);
-        // 불투명하게 초기화
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
-        // 애니메이션 종료 후 투명화 코루틴 시작
         StartCoroutine(PlayAndFadeOut());
     }
 
     private IEnumerator PlayAndFadeOut()
     {
-        // 애니메이션이 1초짜리라고 가정 (클립 길이에 맞게 수정 가능)
         yield return new WaitForSeconds(1f);
 
         float duration = 0.1f;

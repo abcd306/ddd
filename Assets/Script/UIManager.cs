@@ -52,14 +52,12 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCoinUI(int collected, int required)
     {
-        bool showCoinUI = required > 0;
-        coinIcon.gameObject.SetActive(showCoinUI);
-        coinText.gameObject.SetActive(showCoinUI);
+        bool show = required > 0;
+        coinIcon.gameObject.SetActive(show);
+        coinText.gameObject.SetActive(show);
 
-        if (showCoinUI)
-        {
+        if (show)
             coinText.text = $"{collected} / {required}";
-        }
     }
 
     public void HideCoinUI()

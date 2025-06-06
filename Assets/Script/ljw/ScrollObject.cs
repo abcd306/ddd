@@ -10,7 +10,6 @@ public abstract class ScrollObject : MonoBehaviour
     public int direction = 0;
 
     public List<int> activeChapters;
-
     protected float initialX;
 
     protected virtual void Awake()
@@ -22,14 +21,19 @@ public abstract class ScrollObject : MonoBehaviour
     {
         if (ScrollManager.Instance == null) return;
 
-        if (activeChapters == null || !activeChapters.Contains(ScrollManager.Instance.CurrentChapter)) return;
+        if (activeChapters == null || !activeChapters.Contains(GameManager.instance.GetCurrentChapter())) return;
 
         Move();
         CheckDestroy();
     }
 
-    protected abstract void Move();
-
+    protected virtual void Move()
+    {
+        direction = ScrollManager.Instance.GetDirection();
+        if (direction == 0) return;
+        transform.Translate(Vector3.right* moveSpeed * direction * Time.deltaTime);
+    }
+        
     protected virtual void CheckDestroy()
     {
         if (initialX < 0 && direction == 1 && transform.position.x >= rightLimit)
