@@ -17,6 +17,11 @@ public abstract class ScrollObject : MonoBehaviour
         initialX = transform.position.x;
     }
 
+    protected virtual void Start()
+    {
+        SetChaptersByPosition();
+    }
+
     protected virtual void Update()
     {
         if (ScrollManager.Instance == null) return;
@@ -43,6 +48,19 @@ public abstract class ScrollObject : MonoBehaviour
         else if (initialX > 0 && direction == -1 && transform.position.x <= leftLimit)
         {
             Destroy(gameObject);
+        }
+    }
+
+    protected void SetChaptersByPosition()
+    {
+        float cameraCenterX = Camera.main.transform.position.x;
+        if (transform.position.x < cameraCenterX)
+        {
+            activeChapters = new List<int> { 2 };
+        }
+        else
+        {
+            activeChapters = new List<int> { 1, 3 };
         }
     }
 }

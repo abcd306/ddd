@@ -20,7 +20,7 @@ public class LightningManager : MonoBehaviour
         if (hasEnoughCoins)
         {
             if (lightning2 != null)
-                lightning2.SetActive(true);  // OnEnable에서 애니메이션 + 페이드아웃 자동 실행
+                lightning2.SetActive(true);
         }
         else
         {
@@ -28,6 +28,7 @@ public class LightningManager : MonoBehaviour
                 lightning1.SetActive(true);
 
             if (PlayerController.instance != null)
+                PlayerController.instance.ResetState();
                 PlayerController.instance.Invoke("ForceDie", 0.3f);
         }
     }

@@ -13,8 +13,8 @@ public class Lightningflase : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-        animator.Play("LightningAnimation", -1, 0f);
+    {        
+        animator.Play("LightningAnimation", 0, 0f);
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         StartCoroutine(PlayAndFadeOut());
     }

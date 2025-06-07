@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        Debug.Log("OnTriggerEnter2D: 플레이어가 충돌한 오브젝트 이름 → " + collider.gameObject.name);
+
         // 테스트용 RunTrigger 작동 여부 확인
         if (collider.gameObject.CompareTag("RunTrigger"))
         {
@@ -293,5 +295,19 @@ public class PlayerController : MonoBehaviour
         isControlLocked = true;
         yield return new WaitForSeconds(seconds);
         isControlLocked = false;
+    }
+
+    public void ResetState()
+    {
+        isInvincible = false;
+        spr.color = fullA;
+
+        CancelInvoke("RecoverFromDamage");
+
+        PlayerAnimator.SetInteger("State", 0);
+        SlcCol.enabled = false;
+        RunnCol.enabled = true;
+
+        StartCoroutine(LockControlsForSeconds(3f));
     }
 }

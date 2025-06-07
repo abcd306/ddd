@@ -12,7 +12,6 @@ TagManager:
   - RunTrigger
   - Stop
   - Boss
-  - DreamEnergy
   layers:
   - Default
   - TransparentFX
@@ -24,7 +23,7 @@ TagManager:
   - Player
   - Obstacle
   - Ground
-  - dd
+  - 
   - 
   - 
   - 

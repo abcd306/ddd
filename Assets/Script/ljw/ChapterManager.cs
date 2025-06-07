@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChapterManager : MonoBehaviour
+public class ChapterManager : ScrollObject
 {
     public int requiredCoins = 0;
-    //public int nextChapter = 2;
+    public int nextChapter = 2;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player"))
-            return;
+        if (!activeChapters.Contains(GameManager.instance.GetCurrentChapter())) return;
+
+        if (!other.CompareTag("Player")) return;
 
         if (GameManager.instance == null || LightningManager.instance == null)
         {
-            Debug.LogWarning("GameManager or LightningManager instance not found");
+            Debug.LogWarning("GameManager or LightningManager missing");
             return;
         }
 
@@ -24,7 +25,7 @@ public class ChapterManager : MonoBehaviour
 
         if (hasEnoughCoins)
         {
-            Debug.Log(" 코인 충분! 다음 챕터로.");
+            Debug.Log("코인 충분! 다음 챕터로 이동.");
         }
         else
         {
